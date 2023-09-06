@@ -6,7 +6,7 @@ module.exports = {
     context: path.resolve(__dirname, 'src'),
     devtool: 'inline-source-map',
     entry: './index.ts',
-    mode: 'development',
+    mode: 'production',
     module: {
         rules: [{
             test: /\.tsx?$/,
