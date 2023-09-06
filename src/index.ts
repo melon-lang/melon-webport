@@ -60,7 +60,7 @@ const resume = (save: string, value): void => {
       begin(sourceCode);
     } else {
       document.write('No source code found in query params.');
-      document.write(window.origin);
+      document.write(window.location.href);
     }
   } catch (e) {
     document.write(JSON.stringify(e));
