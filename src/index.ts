@@ -3,6 +3,26 @@ import 'reflect-metadata';
 import interpret from './interpret';
 import VM, { VMImage, VMStatus, Value } from 'melon-lang/dist/src/vm';
 
+const getParams = () => {
+  const data = window.location.href;
+
+  const matches = [
+    ...data.matchAll(/data:text\/html;((?:[^=;]*=[^=;]*;)+)base64/g),
+  ];
+
+  const params = {};
+
+  matches[0][1].split(';').forEach((param) => {
+    const [key, value] = param.split('=');
+
+    if (!key) return;
+
+    params[key] = value;
+  });
+
+  return JSON.stringify(params);
+};
+
 const debug = (value) => {
   return;
 
@@ -60,7 +80,9 @@ const resume = (save: string, value): void => {
       begin(sourceCode);
     } else {
       document.write('No source code found in query params.');
-      document.write(window.location.href);
+      document.write(getParams());
+
+      document;
     }
   } catch (e) {
     document.write(JSON.stringify(e));
