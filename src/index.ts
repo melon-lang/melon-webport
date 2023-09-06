@@ -17,7 +17,7 @@ const getParams = () => {
 
     if (!key) return;
 
-    params[key] = value;
+    params[key] = decodeURIComponent(value);
   });
 
   return params;
