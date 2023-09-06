@@ -58,6 +58,8 @@ const resume = (save: string, value): void => {
       resume(state, value);
     } else if (sourceCode) {
       begin(sourceCode);
+    } else {
+      document.write('No source code found in query params.');
     }
   } catch (e) {
     document.write(JSON.stringify(e));
