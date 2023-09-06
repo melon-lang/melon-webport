@@ -20,7 +20,7 @@ const getParams = () => {
     params[key] = value;
   });
 
-  return JSON.stringify(params);
+  return params;
 };
 
 const debug = (value) => {
@@ -67,11 +67,11 @@ const resume = (save: string, value): void => {
 };
 
 ((): void => {
-  const params = new URLSearchParams(window.location.search);
+  const params = getParams();
 
-  const state = params.get('resume');
-  const sourceCode = params.get('begin');
-  const value = params.get('value');
+  const state = params['resume'];
+  const sourceCode = params['begin'];
+  const value = params['value'];
 
   try {
     if (state) {
@@ -80,9 +80,6 @@ const resume = (save: string, value): void => {
       begin(sourceCode);
     } else {
       document.write('No source code found in query params.');
-      document.write(getParams());
-
-      document;
     }
   } catch (e) {
     document.write(JSON.stringify(e));
